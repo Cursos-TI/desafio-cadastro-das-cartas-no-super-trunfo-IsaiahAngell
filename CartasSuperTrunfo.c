@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das Cartas
 // Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
@@ -7,30 +7,40 @@
 //Teste larissa
 
 int main() {
-  char nom_carta[9];
-  char estado[1];
-  char cod_carta[3];
+  char nom_carta[50];
+  char estado[50];
+  char cod_carta[50];
   char cidade[50];
   int populacao;
   float area;
   float PIB;
   int pontos_turisticos;
 
-  // Criar Carta
   printf("Digite o nome da carta: ");
-  scanf("%s", nom_carta);
+  fgets(nom_carta, sizeof(nom_carta), stdin);// Código adicionado para aceitar "espaço" no nome da carta
+  nom_carta[strcspn(nom_carta, "\n")] = '\0';
+  
   printf("Digite o nome do estado: ");
   scanf("%s", estado);
+  
   printf("Digite o código da carta: ");
   scanf("%s", cod_carta);
+  
+  getchar();
+  
   printf("Digite o nome da cidade: ");
-  scanf("%s", cidade);
+  fgets(cidade, sizeof(cidade), stdin); // Código adicionado para aceitar "espaço" no nome da cidade
+  cidade[strcspn(cidade, "\n")] = '\0';
+  
   printf("Digite a população: ");
   scanf("%d", &populacao);
+  
   printf("Digite a área: ");
   scanf("%f", &area);
+  
   printf("Digite o PIB: ");
   scanf("%f", &PIB);
+  
   printf("Digite o número de pontos turísticos: ");
   scanf("%d", &pontos_turisticos);
 
@@ -43,5 +53,6 @@ int main() {
   printf("Área: %.2f km²\n", area);
   printf("PIB: %.2f bilhões de reais\n", PIB);
   printf("Número de pontos turísticos: %d\n", pontos_turisticos);
-    return 0;
+
+  return 0;
 }
