@@ -134,5 +134,15 @@ int main() {
   printf(" PIB per Capita: %d\n", PIB_per_Capita > PIB_per_Capita2);
   printf(" Super Poder: %d\n", super_poder > super_poder2);
 
+  if (super_poder > super_poder2){
+    printf("A carta 1 é mais poderosa que a carta 2");
+  }
+  else if (super_poder < super_poder2){
+    printf("A carta 2 é mais poderosa que a carta 1");
+  }
+  else{
+    printf("Empate!");
+  }
+
   return 0;
 }
