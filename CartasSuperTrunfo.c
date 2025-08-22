@@ -31,7 +31,8 @@ int main() {
   float PIB_per_Capita2;
   float super_poder2;
 
-  int variavel; //Adicionando a variável do switch
+  int variavel;
+  int variavel2; //Adicionando a variável do switch
 
   //Criar carta 1
 
@@ -91,6 +92,16 @@ int main() {
 
   printf("Digite o segundo número de pontos turísticos: ");
   scanf("%d", &pontos_turisticos2);
+  
+  //Densidade Populacional e PIB per capita
+  densidade_populacional = populacao / area;
+  PIB_per_Capita = (PIB*1000000000) / populacao;
+  densidade_populacional2 = populacao2 / area2;
+  PIB_per_Capita2 = (PIB2*1000000000) / populacao2;
+
+  //Super Poder
+  super_poder = populacao + area + PIB + pontos_turisticos + PIB_per_Capita - densidade_populacional;
+  super_poder2 = populacao2 + area2 + PIB2 + pontos_turisticos2 + PIB_per_Capita2 - densidade_populacional2;
 
   // adicionando o menu e o switch para comparar os atributos
   printf("====== Escolha o atributo para comparar ======\n");
@@ -100,6 +111,17 @@ int main() {
   printf("4 - Pontos Turísticos\n");
   printf("5 - Densidade Populacional\n");
   scanf("%d", &variavel);
+  // segundo menu para comparação do segundo atributo, não podendo ser o mesmo do primeiro
+  printf("====== Escolha o segundo atributo para comparar ======\n");
+  printf("====== Não pode ser o mesmo atributo escolhido anteriormente ======\n");
+  printf("1 - População\n");
+  printf("2 - Área\n");
+  printf("3 - PIB\n");
+  printf("4 - Pontos Turísticos\n");
+  printf("5 - Densidade Populacional\n");
+  scanf("%d", &variavel2);
+
+
   switch(variavel){
 
 
@@ -160,16 +182,71 @@ int main() {
     break;
     default: printf("Opção inválida\n");
   }
+  // usando if-else para impedir a repetição da escolha do atributo
+  if(variavel == variavel2){
+    printf("Primeira e Segunda opções iguais!!!\n\n");
+  } else {
+    switch(variavel2){
 
-  //Densidade Populacional e PIB per capita
-  densidade_populacional = populacao / area;
-  PIB_per_Capita = (PIB*1000000000) / populacao;
-  densidade_populacional2 = populacao2 / area2;
-  PIB_per_Capita2 = (PIB2*1000000000) / populacao2;
 
-  //Super Poder
-  super_poder = populacao + area + PIB + pontos_turisticos + PIB_per_Capita - densidade_populacional;
-  super_poder2 = populacao2 + area2 + PIB2 + pontos_turisticos2 + PIB_per_Capita2 - densidade_populacional2;
+      case 1: if(populacao > populacao2){
+        printf("A carta 1 vence em População\n");
+        printf("%s: %d\n %s: %d\n\n", cidade, populacao, cidade2, populacao2); 
+      } else if(populacao < populacao2){
+        printf("A carta 2 vence em População\n");
+        printf("%s: %d\n %s: %d\n\n", cidade, populacao, cidade2, populacao2);
+      } else{
+        printf("Empate em População\n\n");
+        printf("%s: %d\n %s: %d\n", cidade, populacao, cidade2, populacao2);
+      }
+      break;
+      case 2: if(area > area2){
+        printf("A carta 1 vence em Área\n");
+        printf("%s: %.2f\n %s: %.2f\n\n", cidade, area, cidade2, area2);
+      } else if(area < area2){
+        printf("A carta 2 vence em Área\n");
+        printf("%s: %.2f\n %s: %.2f\n\n", cidade, area, cidade2, area2);
+      } else{
+        printf("Empate em Área\n");
+        printf("%s: %.2f\n %s: %.2f\n\n", cidade, area, cidade2, area2);
+      }
+      break;
+      case 3: if(PIB > PIB2){
+        printf("A carta 1 vence em PIB\n");
+        printf("%s: %.2f\n %s: %.2f\n\n", cidade, PIB, cidade2, PIB2);
+      } else if(PIB < PIB2){
+        printf("A carta 2 vence em PIB\n");
+        printf("%s: %.2f\n %s: %.2f\n\n", cidade, PIB, cidade2, PIB2);
+      } else{
+        printf("Empate em PIB\n");
+        printf("%s: %.2f\n %s: %.2f\n\n", cidade, PIB, cidade2, PIB2);
+      }
+      break;
+      case 4: if(pontos_turisticos > pontos_turisticos2){
+        printf("A carta 1 vence em Pontos Turísticos\n");
+        printf("%s: %d\n %s: %d\n\n", cidade, pontos_turisticos, cidade2, pontos_turisticos2);
+      } else if(pontos_turisticos < pontos_turisticos2){
+        printf("A carta 2 vence em Pontos Turísticos\n");
+        printf("%s: %d\n %s: %d\n\n", cidade, pontos_turisticos, cidade2, pontos_turisticos2);
+      } else{
+        printf("Empate em Pontos Turísticos\n");
+        printf("%s: %d\n %s: %d\n\n", cidade, pontos_turisticos, cidade2, pontos_turisticos2);
+      }
+      break;
+      case 5: if(densidade_populacional < densidade_populacional2){
+        printf("A carta 1 vence em Densidade Populacional\n");
+        printf("%s: %.2f\n %s: %.2f\n\n", cidade, densidade_populacional, cidade2, densidade_populacional2);
+      } else if(densidade_populacional > densidade_populacional2){
+        printf("A carta 2 vence em Densidade Populacional\n");
+        printf("%s: %.2f\n %s: %.2f\n\n", cidade, densidade_populacional, cidade2, densidade_populacional2);
+      } else{
+        printf("Empate em Densidade Populacional\n");
+        printf("%s: %.2f\n %s: %.2f\n\n", cidade, densidade_populacional, cidade2, densidade_populacional2);
+      }
+      break;
+      default: printf("Opção inválida\n\n");
+  }
+  }
 
   // Exibir Carta 1
   printf("Carta 1: \n");
